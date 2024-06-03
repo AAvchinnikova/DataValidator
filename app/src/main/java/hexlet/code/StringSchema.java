@@ -3,14 +3,13 @@ package hexlet.code;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StringSchema {
+public class StringSchema{
 
     private boolean statusOfRequired = false;
     private int minLength;
     private boolean statusOfMinLength = false;
     private String substring;
     private boolean statusOfSubstring = false;
-    private String value;
 
 
     public StringSchema required() {
@@ -29,6 +28,9 @@ public class StringSchema {
     }
     public boolean isValid(String value) {
         List<Boolean> resultCheck = new ArrayList<>();
+        if (value == null) {
+            value = "";
+        }
         if( statusOfRequired) {
             resultCheck.add(checkRequired(value));
         }
@@ -41,13 +43,13 @@ public class StringSchema {
         return !resultCheck.contains(false);
     }
 
-    public boolean checkRequired(String value) {
-        return  !(value.equals(null) || value.equals(""));
+    private boolean checkRequired(String value) {
+        return !value.equals("");
     }
-    public boolean checkMinLength(String value) {
+    private boolean checkMinLength(String value) {
         return value.length() < minLength;
     }
-    public boolean checkContains(String value) {
+    private boolean checkContains(String value) {
         return value.contains(substring);
     }
 
