@@ -9,7 +9,7 @@ public class StringSchema extends BaseSchema {
     }
     public StringSchema minLength(int minLength) {
         super.addCheck("minLength",
-                value -> value instanceof String && ((String) value).length() <= minLength);
+                value -> value instanceof String && ((String) value).length() >= minLength);
         return this;
     }
     public StringSchema contains(String substring) {
