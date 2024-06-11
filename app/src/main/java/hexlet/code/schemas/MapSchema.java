@@ -1,20 +1,21 @@
 package hexlet.code.schemas;
 
 import java.util.Map;
+import java.util.Objects;
 
-public class MapSchema extends BaseSchema {
+public final class MapSchema<K, V> extends BaseSchema<Map<K, V>> {
 
-    public MapSchema required() {
+    public MapSchema<K, V> required() {
         super.addCheck("required",
-                value -> value instanceof Map<?, ?>);
+                Objects::nonNull);
         return this;
     }
-    public MapSchema sizeof(int size) {
+    public MapSchema<K, V> sizeof(int size) {
         super.addCheck("sizeof",
                 value -> ((Map<?, ?>) value).size() == size);
         return this;
     }
-    public MapSchema shape(Map<String, BaseSchema> schemas) {
+    public MapSchema<K, V> shape(Map<K, BaseSchema<V>> schemas) {
         super.addCheck("shape",
                 value -> schemas.entrySet().stream().allMatch(item -> {
                     Object object = ((Map<?, ?>) value).get(item.getKey());

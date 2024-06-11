@@ -33,7 +33,7 @@ public class MapSchemaTest {
         var data2 = new Validator();
         var testSchema2 = data2.map();
 
-        Map<String, BaseSchema> schemas = new HashMap<>();
+        Map<String, BaseSchema<String>> schemas = new HashMap<>();
         schemas.put("firstName", data2.string().required());
         schemas.put("lastName", data2.string().required().minLength(2));
 

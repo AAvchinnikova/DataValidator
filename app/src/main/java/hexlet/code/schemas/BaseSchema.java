@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Predicate;
 
-public class BaseSchema {
+public abstract class BaseSchema<T> {
 
     private final Map<String, Predicate<Object>> rulesOfCheck = new HashMap<>();
 
