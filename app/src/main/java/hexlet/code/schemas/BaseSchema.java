@@ -8,11 +8,11 @@ public abstract class BaseSchema<T> {
 
     private final Map<String, Predicate<Object>> rulesOfCheck = new HashMap<>();
 
-    protected void addCheck(String typeOfCheck, Predicate<Object> predicate) {
+    protected final void addCheck(String typeOfCheck, Predicate<Object> predicate) {
         this.rulesOfCheck.put(typeOfCheck, predicate);
     }
 
-    public boolean isValid(Object object) {
+    public final boolean isValid(Object object) {
         return rulesOfCheck.values().stream().allMatch(predicate -> predicate.test(object));
     }
 }
